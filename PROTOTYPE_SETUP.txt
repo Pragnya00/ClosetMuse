@@ -1,0 +1,32 @@
+CLOSETMUSE PROTOTYPE - QUICK SETUP
+
+1) FRONTEND ENVIRONMENT
+   Copy .env.example to .env and fill in VITE_SUPABASE_ANON_KEY from your existing Supabase project.
+   The project URL is already set to the existing ClosetMuse project.
+   Do not put the Gnani API key in .env or frontend code.
+
+2) INSTALL AND RUN (Windows PowerShell / Command Prompt)
+   npm.cmd install
+   npm.cmd run dev
+
+3) ADD THE GNANI SECRET
+   In Supabase Dashboard for project lpzrtigfcnsodugyyxtw:
+   Project Settings / Edge Functions / Secrets
+   Add: GNANI_API_KEY = <your Gnani API key>
+
+4) DEPLOY THE TWO OUTFIT FUNCTIONS
+   From this project folder:
+   npx.cmd supabase functions deploy transcribe-audio --project-ref lpzrtigfcnsodugyyxtw
+   npx.cmd supabase functions deploy recommend-outfits --project-ref lpzrtigfcnsodugyyxtw
+
+   analyze-clothing was not modified and does not need redeployment for this voice feature.
+
+5) DEMO FLOW
+   Sign in -> open Outfit ideas -> Choose audio -> Convert to text -> review transcript -> Suggest outfits.
+   Use an audio file shorter than 30 seconds and no larger than 5 MB.
+   Supported formats: WAV, MP3, OGG, FLAC, AAC and M4A.
+
+NOTES
+- No database migration is required for audio transcription.
+- The existing saved_outfits migration is included in supabase/migrations but is not applied by this setup guide.
+- The live Gnani API call still requires a valid GNANI_API_KEY and deployed Edge Function.

@@ -1,0 +1,8 @@
+[functions.analyze-clothing]
+verify_jwt = true
+
+[functions.recommend-outfits]
+verify_jwt = true
+
+[functions.transcribe-audio]
+verify_jwt = true
